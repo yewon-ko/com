@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자원봉사 찾기</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container-fluid bg-success text-center py-5">
+    <h1 class="display-4 text-black">자원봉사 찾기</h1>
+    <p class="lead text-black">누구나 쉽게 자원봉사 찾기</p>
+</div>
+
+<!-- 로그인 폼 추가 -->
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
+            <form id="volunteerForm">
+                <div class="form-group">
+                    <label for="name">이름:</label>
+                    <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="description">설명:</label>
+                    <textarea class="form-control" id="description" placeholder="설명을 입력하세요"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="location">지역:</label>
+                    <input type="text" class="form-control" id="location" placeholder="지역을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="month">월:</label>
+                    <input type="text" class="form-control" id="month" placeholder="월을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="day">날:</label>
+                    <input type="text" class="form-control" id="day" placeholder="날을 입력하세요">
+                </div>
+                <button type="submit" class="btn btn-primary">추가하기</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2>자원봉사 목록</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>설명</th>
+                <th>지역</th>
+                <th>월</th>
+                <th>날</th>
+            </tr>
+        </thead>
+        <tbody id="volunteerTableBody">
+            <!-- 여기에 추가된 자원봉사가 동적으로 표시될 것입니다. -->
+        </tbody>
+    </table>
+</div>
+
+<!-- 부트스트랩 JS 및 jQuery 추가 (선택 사항) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#volunteerForm').submit(function(event) {
+            event.preventDefault(); // 기본 동작 방지
+
+            // 입력된 정보 가져오기
+            var name = $('#name').val();
+            var description = $('#description').val();
+            var location = $('#location').val();
+            var month = $('#month').val();
+            var day = $('#day').val();
+
+            // 입력된 정보로 표에 새로운 행 추가
+            var newRow = '<tr><td>' + name + '</td><td>' + description + '</td><td>' + location + '</td><td>' + month + '</td><td>' + day + '</td></tr>';
+            $('#volunteerTableBody').append(newRow);
+
+            // 입력 필드 초기화
+            $('#name').val('');
+            $('#description').val('');
+            $('#location').val('');
+            $('#month').val('');
+            $('#day').val('');
+        });
+    });
+</script>
+
+</body>
+</html>
